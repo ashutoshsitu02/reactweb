@@ -13,7 +13,7 @@ function App() {
  const [Newname, setNewname] = useState("")
 
   useEffect(()=>{
-    Axios.get("https://factory-details.herokuapp.com/api/get").then((response)=>{
+    Axios.get("https://factory-details.herokuapp.com/").then((response)=>{
       setList(response.data);
     });
   },[])
@@ -27,20 +27,20 @@ function App() {
   //   };
 
   const updatename = (id) =>{
-    Axios.put('https://factory-details.herokuapp.com/api/update/',{
+    Axios.put('https://factory-details.herokuapp.com/update',{
       Name:Newname,
       id:id
     });
   }
 
   const SubmitAdd = ()=>{
-    Axios.post('https://factory-details.herokuapp.com/api/insert',{Name:Name, Address:Address, /*PhoneNumber:Phonenumber, */
+    Axios.post('https://factory-details.herokuapp.com/insert',{Name:Name, Address:Address, /*PhoneNumber:Phonenumber, */
     Email:Email});
     setList([...List,{Factory_name:Name,location:Address,/*phone_number:Phonenumber,*/email:Email}])
   };
 
   const deleteFactory = (id)=>{
-    Axios.delete(`https://factory-details.herokuapp.com/api/delete/${id}`)
+    Axios.delete(`https://factory-details.herokuapp.com/delete/${id}`)
   }
 
   return (
